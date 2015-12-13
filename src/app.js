@@ -1,23 +1,18 @@
-import React                  from 'react';
-import ReactDOM               from 'react-dom';
-import createBrowserHistory   from 'history/lib/createBrowserHistory';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
 import { syncReduxAndRouter } from 'redux-simple-router';
-import Root                   from './containers/Root';
-import configureStore         from './store/configureStore';
+import routes from './routes';
+import Root from './containers/Root';
+import configureStore from './redux/configureStore';
 
-const target  = document.getElementById('root');
 const history = createBrowserHistory();
-const store   = configureStore(window.__INITIAL_STATE__, __DEBUG__);
+const store = configureStore(window.__INITIAL_STATE__, __DEBUG__);
 
-syncReduxAndRouter(history, store);
+syncReduxAndRouter(history, store, (state) => state.router);
 
-const node = (
-  <Root
-    history={history}
-    store={store}
-    debug={__DEBUG__}
-    debugExternal={__DEBUG_NW__}
-  />
+// Render the React application to the DOM
+ReactDOM.render(
+  <Root history={history} routes={routes} store={store} />,
+  document.getElementById('root')
 );
-
-ReactDOM.render(node, target);

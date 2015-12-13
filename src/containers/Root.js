@@ -1,40 +1,27 @@
-import React                    from 'react';
-import { Provider }             from 'react-redux';
-import { Router }               from 'react-router';
-import routes                   from '../routes';
-import DevTools                 from './DevTools';
-import { createDevToolsWindow } from 'utils';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { Router } from 'react-router';
+import DevTools from 'containers/DevTools';
 
 export default class Root extends React.Component {
   static propTypes = {
-    history : React.PropTypes.object.isRequired,
-    store   : React.PropTypes.object.isRequired,
-    debug   : React.PropTypes.bool,
-    debugExternal : React.PropTypes.bool
+    history: React.PropTypes.object.isRequired,
+    routes: React.PropTypes.element.isRequired,
+    store: React.PropTypes.object.isRequired
   }
 
-  static defaultProps = {
-    debug : false,
-    debugExternal : false
-  }
+  render() {
+    const content = (
+      <Router history={this.props.history}>
+        {this.props.routes}
+      </Router>
+    );
 
-  renderDevTools () {
-    if (!this.props.debug) {
-      return null;
-    }
-
-    return this.props.debugExternal ?
-      createDevToolsWindow(this.props.store) : <DevTools />;
-  }
-
-  render () {
     return (
       <Provider store={this.props.store}>
         <div>
-          <Router history={this.props.history}>
-            {routes}
-          </Router>
-          {this.renderDevTools()}
+          {content}
+          <DevTools />
         </div>
       </Provider>
     );

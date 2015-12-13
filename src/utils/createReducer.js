@@ -1,4 +1,4 @@
-export function createReducer (initialState, fnMap) {
+export function createReducer(initialState, fnMap) {
   return (state = initialState, action) => {
     const { type, payload } = action;
     const handler = fnMap[type];

@@ -1,55 +1,55 @@
-import path     from 'path';
+import path from 'path';
 import { argv } from 'yargs';
 
 const debug = require('debug')('kit:config');
 debug('Create configuration.');
 
 const config = {
-  env : process.env.NODE_ENV,
+  env: process.env.NODE_ENV,
 
   // ----------------------------------
   // Project Structure
   // ----------------------------------
-  path_base  : path.resolve(__dirname, '../'),
-  dir_client : 'src',
-  dir_dist   : 'dist',
-  dir_server : 'server',
-  dir_test   : 'tests',
+  path_base: path.resolve(__dirname, '../'),
+  dir_client: 'src',
+  dir_dist: 'dist',
+  dir_server: 'server',
+  dir_test: 'tests',
 
   // ----------------------------------
   // Server Configuration
   // ----------------------------------
-  server_host : 'localhost',
-  server_port : process.env.PORT || 3000,
+  server_host: 'localhost',
+  server_port: process.env.PORT || 3000,
 
   // ----------------------------------
   // Compiler Configuration
   // ----------------------------------
-  compiler_css_modules     : true,
-  compiler_enable_hmr      : false,
-  compiler_source_maps     : true,
-  compiler_hash_type       : 'hash',
-  compiler_inline_manifest : false,
-  compiler_fail_on_warning : false,
-  compiler_quiet           : false,
-  compiler_public_path     : '/',
-  compiler_vendor          : [
+  compiler_css_modules: true,
+  compiler_enable_hmr: false,
+  compiler_source_maps: true,
+  compiler_hash_type: 'hash',
+  compiler_inline_manifest: false,
+  compiler_fail_on_warning: false,
+  compiler_quiet: false,
+  compiler_public_path: '/',
+  compiler_vendor: [
     'history',
     'react',
     'react-redux',
     'react-router',
     'redux',
-    'redux-simple-router'
+    'redux-simple-router',
   ],
 
   // ----------------------------------
   // Test Configuration
   // ----------------------------------
-  coverage_enabled   : !argv.watch,
-  coverage_reporters : [
-    { type : 'text-summary' },
-    { type : 'html', dir : 'coverage' }
-  ]
+  coverage_enabled: !argv.watch,
+  coverage_reporters: [
+    { type: 'text-summary' },
+    { type: 'html', dir: 'coverage' },
+  ],
 };
 
 /************************************************
@@ -65,14 +65,14 @@ Edit at Your Own Risk
 // Environment
 // ------------------------------------
 config.globals = {
-  'process.env'  : {
-    'NODE_ENV' : JSON.stringify(config.env)
+  'process.env': {
+    NODE_ENV: JSON.stringify(config.env),
   },
-  'NODE_ENV'     : config.env,
-  '__DEV__'      : config.env === 'development',
-  '__PROD__'     : config.env === 'production',
-  '__DEBUG__'    : config.env === 'development' && !argv.no_debug,
-  '__DEBUG_NW__' : !!argv.nw
+  NODE_ENV: config.env,
+  __DEV__: config.env === 'development',
+  __PROD__: config.env === 'production',
+  __DEBUG__: config.env === 'development' && !argv.no_debug,
+  __DEBUG_NW__: !!argv.nw,
 };
 
 // ------------------------------------
@@ -86,7 +86,8 @@ config.compiler_vendor = config.compiler_vendor
 
     debug(
       `Package "${dep}" was not found as an npm dependency in package.json; ` +
-      `it won't be included in the webpack vendor bundle.\n` +
+      `it won't be included in the webpack vendor bundle.
+` +
       `Consider removing it from vendor_dependencies in ~/config/index.js`
     );
   });
@@ -101,9 +102,9 @@ config.utils_paths = (() => {
     resolve.apply(resolve, [config.path_base, ...args]);
 
   return {
-    base   : base,
-    client : base.bind(null, config.dir_client),
-    dist   : base.bind(null, config.dir_dist)
+    base: base,
+    client: base.bind(null, config.dir_client),
+    dist: base.bind(null, config.dir_dist),
   };
 })();
 
@@ -119,7 +120,7 @@ config.utils_aliases = [
   'store',
   'styles',
   'utils',
-  'views'
+  'views',
 ].reduce((acc, dir) => {
   acc[dir] = config.utils_paths.client(dir);
   return acc;

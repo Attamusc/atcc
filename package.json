@@ -26,7 +26,10 @@
     "cssnano": "^3.3.2",
     "debug": "^2.2.0",
     "dotenv": "^1.2.0",
+    "es6-promise": "^3.0.2",
     "history": "1.13.1",
+    "isomorphic-fetch": "^2.2.0",
+    "moment": "^2.10.6",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-redux": "^4.0.0",
@@ -34,6 +37,7 @@
     "redux": "^3.0.0",
     "redux-simple-router": "^1.0.0",
     "redux-thunk": "^1.0.0",
+    "reqwest": "^2.0.5",
     "yargs": "^3.18.0"
   },
   "devDependencies": {
@@ -61,6 +65,7 @@
     "file-loader": "^0.8.4",
     "html-webpack-plugin": "^1.6.1",
     "isparta-loader": "^2.0.0",
+    "jscs-preset-behance": "^1.0.0",
     "karma": "^0.13.8",
     "karma-chai": "^0.1.0",
     "karma-chai-as-promised": "^0.1.2",
