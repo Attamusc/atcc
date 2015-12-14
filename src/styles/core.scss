@@ -1,2 +1,10 @@
 @import 'base';
+
 @import 'vendor/normalize';
+@import 'node_modules/bootstrap/scss/bootstrap';
+
+// views
+@import 'views/FollowerDashboardView';
+
+// components
+@import 'components/DashboardFollower';

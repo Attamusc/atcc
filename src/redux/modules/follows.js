@@ -19,6 +19,12 @@ export const actions = {
         });
       });
     };
+  },
+
+  eventuallyFetch() {
+    // return dispatch => (
+      // window.setTimeout(() => dispatch(actions.fetch()), 15000)
+    // );
   }
 };
 

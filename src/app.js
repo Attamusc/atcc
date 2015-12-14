@@ -6,6 +6,8 @@ import routes from './routes';
 import Root from './containers/Root';
 import configureStore from './redux/configureStore';
 
+import 'styles/core.scss';
+
 const history = createBrowserHistory();
 const store = configureStore(window.__INITIAL_STATE__, __DEBUG__);
 

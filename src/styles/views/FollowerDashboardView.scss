@@ -1,0 +1,18 @@
+.follow-container {
+  h1 {
+    border-bottom: 1px solid #333;
+    margin: 10px 0 50px;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+
+  .follows-list {
+    @extend .list-group;
+  }
+
+  .follows-item {
+    @extend .list-group-item;
+    
+    padding: 0;
+  }
+}

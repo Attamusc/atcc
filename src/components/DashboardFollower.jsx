@@ -9,8 +9,8 @@ export default class DashboardFollower extends React.Component {
     return (
       <div className='dashboard-follower'>
         <img className='dashboard-follower--logo' src={this.props.user.logo} />
-        <span className='dashboard-follower--name'>{this.props.user.name}</span>
-        <span className='dashboard-follower--created'>({this.props.user.createdAt})</span>
+        <div className='dashboard-follower--name'>{this.props.user.name}</div>
+        <div className='dashboard-follower--created'>followed {this.props.user.createdAt} ago</div>
       </div>
     );
   }

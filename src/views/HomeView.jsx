@@ -16,9 +16,12 @@ export class HomeView extends React.Component {
   render() {
     return (
       <div className='container text-center'>
-        <h1>Attamusc Twitch Dashboard</h1>
-
-        <Link to='/alerts/follows'>Go To FollowerAlerts View</Link>
+        <div className='jumbotron jumbotron-fluid'>
+          <div className='container'>
+            <h1 className='display-3'>Attamusc Twitch Control Center</h1>
+            <p className='lead'>Dashboard for all things Attamusc on Twitch</p>
+          </div>
+        </div>
       </div>
     );
   }

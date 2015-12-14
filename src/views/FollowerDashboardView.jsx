@@ -18,20 +18,26 @@ export class FollowerDashboardView extends React.Component {
     this.props.fetch();
   }
 
+  componentWillReceiveProps() {
+    this.props.eventuallyFetch();
+  }
+
   render() {
     const follows = Object.keys(this.props.follows)
     .map(id => {
       const follow = this.props.follows[id];
 
       return (
-        <li key={follow.name}><DashboardFollower user={follow} /></li>
+        <li key={follow.name} className='follows-item'><DashboardFollower user={follow} /></li>
       );
     });
 
     return (
       <div className='follow-container'>
         <h1>Follower Alerts</h1>
-        <ul>{follows}</ul>
+        <ul className='follows-list'>
+          {follows}
+        </ul>
       </div>
     );
   }
