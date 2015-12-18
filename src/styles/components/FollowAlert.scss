@@ -1,0 +1,46 @@
+.follow-alert-wrap {
+  background-color: #DDD;
+  border: 2px solid #333;
+  border-radius: 5px;
+  height: 128px;
+  margin: 10px;
+  width: 500px;
+}
+
+.follow-alert {
+  color: rgba(255, 255, 255, 1.0);
+  margin: 20px;
+  text-align: center;
+  font-size: 28px;
+  text-shadow: 2px 0 rgba(0, 0, 0, 1.0),
+               0 2px rgba(0, 0, 0, 1.0),
+               -2px 0 rgba(0, 0, 0, 1.0),
+               0 -2px rgba(0, 0, 0, 1.0);
+}
+
+.follow-alert-appear {
+  opacity: 0.01;
+}
+
+.follow-alert-appear.follow-alert-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.follow-alert-enter {
+  opacity: 0.01;
+}
+
+.follow-alert-enter.follow-alert-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.follow-alert-leave {
+  opacity: 1;
+}
+
+.follow-alert-leave.follow-alert-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

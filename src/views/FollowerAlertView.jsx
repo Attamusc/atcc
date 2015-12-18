@@ -1,33 +1,60 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { connect } from 'react-redux';
 import { actions as followsActions } from '../redux/modules/follows';
 
+import FollowAlert from '../components/FollowAlert';
+
 const mapStateToProps = (state) => ({
-  follows: state.follows
+  currentFollow: state.follows.currentFollow
 });
 
 export class FollowerAlertView extends React.Component {
   static propTypes = {
-    follows: React.PropTypes.object.isRequired,
-    fetch: React.PropTypes.func.isRequired,
-    dispatch: React.PropTypes.func.isRequired
+    currentFollow: React.PropTypes.object,
+    seed: React.PropTypes.func.isRequired,
+    poll: React.PropTypes.func.isRequired,
+    popFollowQueue: React.PropTypes.func.isRequired
   }
 
-  componentDidMount() {
-    this.props.dispatch(this.props.fetch);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      showAlert: true
+    };
+  }
+
+  componentWillMount() {
+    this.props.seed();
+    this.props.poll();
   }
 
   render() {
+    let followAlert;
+    if (this.props.currentFollow && this.state.showAlert) {
+      followAlert = (
+        <div className='follow-alert-container'>
+          <FollowAlert follower={this.props.currentFollow}
+            onComplete={() => this._idleCounter()}/>
+        </div>
+      );
+    }
+
     return (
-      <div className='follow-container'>
-        <h1>Follower Alerts</h1>
-        <ul>
-          {Object.keys(this.props.follows).map(follow =>
-            <li><span>{follow.user.name}</span></li>
-          )}
-        </ul>
-      </div>
+      <ReactCSSTransitionGroup
+        transitionName="follow-alert"
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={300}>
+        {followAlert}
+      </ReactCSSTransitionGroup>
     );
+  }
+
+  _idleCounter() {
+    window.setTimeout(() => this.setState({ showAlert: false }));
   }
 }
 

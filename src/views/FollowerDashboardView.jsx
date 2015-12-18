@@ -5,13 +5,14 @@ import { actions as followsActions } from '../redux/modules/follows';
 import DashboardFollower from '../components/DashboardFollower';
 
 const mapStateToProps = (state) => ({
-  follows: state.follows
+  follows: state.follows.followers
 });
 
 export class FollowerDashboardView extends React.Component {
   static propTypes = {
     follows: React.PropTypes.object.isRequired,
-    fetch: React.PropTypes.func.isRequired
+    fetch: React.PropTypes.func.isRequired,
+    poll: React.PropTypes.func.isRequired
   }
 
   componentDidMount() {
@@ -19,7 +20,7 @@ export class FollowerDashboardView extends React.Component {
   }
 
   componentWillReceiveProps() {
-    this.props.eventuallyFetch();
+    this.props.poll();
   }
 
   render() {
@@ -28,7 +29,7 @@ export class FollowerDashboardView extends React.Component {
       const follow = this.props.follows[id];
 
       return (
-        <li key={follow.name} className='follows-item'><DashboardFollower user={follow} /></li>
+        <li key={follow.id} className='follows-item'><DashboardFollower user={follow} /></li>
       );
     });
 

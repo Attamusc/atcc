@@ -96,19 +96,6 @@ const webpackConfig = {
   sassLoader : {
     includePaths : paths.client('styles')
   },
-  postcss : [
-    cssnano({
-      sourcemap : true,
-      autoprefixer : {
-        add      : true,
-        remove   : true,
-        browsers : ['last 2 versions']
-      },
-      discardComments : {
-        removeAll : true
-      }
-    })
-  ],
   eslint: {
     configFile: `${paths.base()}/.eslintrc`
   }

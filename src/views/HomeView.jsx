@@ -1,17 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { actions as counterActions } from '../redux/modules/counter';
 
-const mapStateToProps = (state) => ({
-  counter: state.counter
-});
+const mapStateToProps = (state) => ({});
 
 export class HomeView extends React.Component {
-  static propTypes = {
-    increment: React.PropTypes.func,
-    counter: React.PropTypes.number
-  }
+  static propTypes = {}
 
   render() {
     return (
@@ -27,4 +21,4 @@ export class HomeView extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, counterActions)(HomeView);
+export default connect(mapStateToProps)(HomeView);

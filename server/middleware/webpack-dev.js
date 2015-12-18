@@ -11,11 +11,13 @@ export default function ({ compiler, publicPath }) {
     publicPath,
     contentBase : paths.base(config.dir_client),
     hot         : true,
-    quiet       : config.compiler_quiet,
-    noInfo      : config.compiler_quiet,
+    quiet       : false,
+    noInfo      : false,
     lazy        : false,
     stats       : {
-      colors : true
+      colors : true,
+      chunks: false,
+      version: false
     }
   });
 }
